@@ -1,2 +1,72 @@
 ## This is my first homework assignment
 
+---
+title: "Homework 1"
+author: Amanda Kramer (on Charles Biggar's computer)
+output: github_document
+---
+
+This is my HW1: (Problem 1.0 done while working together in class)
+
+```{r}
+library(tidyverse)
+```
+
+##Problem 0.1
+
+
+## Problem 1
+
+Create a data frame with the specified elements. 
+
+```{r create_df}
+prob1_df = 
+  tibble(
+    samp = rnorm(10),
+    samp_gt_0 = samp > 0,
+    char_vec = c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j"),
+    factor_vec = factor(c("low", "low", "low", "mod", "mod", "mod", "mod", "high", "high", "high"))
+  )
+```
+
+Take the mean of each variable in my data frame.
+
+```{r mean_pull_var}
+mean(pull(prob1_df, samp))
+mean(pull(prob1_df, samp_gt_0))
+mean(pull(prob1_df, char_vec))
+mean(pull(prob1_df, factor_vec))
+```
+
+I can take the mean of numbers and logical but not character or factor. 
+
+```{r try_numeric}
+as.numeric(pull(prob1_df, samp))
+as.numeric(pull(prob1_df, samp_gt_0))
+as.numeric(pull(prob1_df, char_vec))
+as.numeric(pull(prob1_df, factor_vec))
+```
+
+```{r}
+as.numeric(pull(prob1_df, samp_gt_0)) * pull(prob1_df, samp)
+```
+
+
+why don't i like `$` : Dr. Goldsmith
+
+```{r no_dollars}
+prob1_df$samp
+pull(prob1_df, samp)
+prob1_df[["samp"]]
+```
+
+
+# Problem 2.0
+
+#install package in console
+
+data("penguins", package = "palmerpenguins")
+
+```{r homework_1_pr2}
+library(tidyverse)
+
