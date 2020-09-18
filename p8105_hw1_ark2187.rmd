@@ -1,4 +1,3 @@
-## This is my first homework assignment
 
 ---
 title: "Homework 1"
@@ -8,11 +7,11 @@ output: github_document
 
 This is my HW1: (Problem 1.0 done while working together in class)
 
+#please note: There was a lot of trial in error due to my computer crashing and requiring redownloading/configuring R on my boyfriend's laptop. Please refer to my emails with Dr. Goldsmith.
+
 ```{r}
 library(tidyverse)
 ```
-
-##Problem 0.1
 
 
 ## Problem 1
@@ -52,7 +51,7 @@ as.numeric(pull(prob1_df, samp_gt_0)) * pull(prob1_df, samp)
 ```
 
 
-why don't i like `$` : Dr. Goldsmith
+"why don't i like `$`" : Dr. Goldsmith
 
 ```{r no_dollars}
 prob1_df$samp
@@ -62,11 +61,46 @@ prob1_df[["samp"]]
 
 
 # Problem 2.0
-
-#install package in console
-
+#installed package in console
+```{r}
 data("penguins", package = "palmerpenguins")
+```
+
 
 ```{r homework_1_pr2}
 library(tidyverse)
+
+hw_df= tibble(
+
+  names(penguins),
+  ls(penguins),
+  nrow(penguins),
+  ncol(penguins)
+  )
+
+print(hw_df)
+```
+
+
+Penguins is a dataframe with 8 columns and 344 rows. The variables are "species", "island", "bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g", "sex", "year". The mean flipper length is 200.9152 mm.
+
+#the size of the dataset (using nrow and ncol)
+The dataset includes 8 columns and 344 rows
+
+#the mean flipper length
+200.9152 
+
+
+```{r homework_1_pr2_p2}
+
+fl_mean = colMeans(penguins[,5], na.rm = TRUE, dims=1L)
+print(fl_mean)
+
+
+penguins_plot = ggplot(penguins, aes(x=bill_length_mm, y = flipper_length_mm, color= species)) + geom_point()
+
+ggsave(file = "penguins.png")
+
+```
+
 
